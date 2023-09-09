@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./Modal.module.scss"
+import styles from "./Modal.module.scss";
 
 const Modal = () => {
   const [open, setOpen] = useState(false);
@@ -9,9 +9,28 @@ const Modal = () => {
       <div
         className="button"
         onClick={() => setOpen(true)}>
-        Open window
+        Open modal
       </div>
-      {open && <div>Modal</div>}
+      {open && (
+        <div
+          className={styles.overlay}
+          onClick={() => setOpen(false)}>
+          <div
+            className={styles.window}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}>
+            <p>This is modal window. To close it press button or click around window.</p>
+            <div
+              className="button"
+              onClick={() => {
+                setOpen(false);
+              }}>
+              Close
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
