@@ -61,15 +61,19 @@ button {
   display: block;
   margin: 5px;
   padding: 5px 15px;
-  width: 200px;
+  max-width: 250px;
+  min-width: 200px;
+  background-color: transparent;
   border: 1px solid lightblue;
   border-radius: 5px;
   text-align: center;
   transition: all 0.3s ease-out;
+  cursor: pointer;
 
   &:hover {
     background-color: lightblue;
     transition: all 0.3s ease-in;
+    color: #646cff;
   }
 }
 
