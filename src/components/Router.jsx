@@ -1,5 +1,6 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Home from "./screens/Home/Home";
+import Counter from "./screens/Counter/Counter";
 
 const Router = () => {
   return (
@@ -10,6 +11,10 @@ const Router = () => {
           path="/"
         />
 
+        <Route
+          element={<Counter />}
+          path="/counter"
+        />
 
         {/* Route for not found page */}
         <Route
