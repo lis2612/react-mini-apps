@@ -2,6 +2,17 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Home from "./screens/Home/Home";
 import Counter from "./screens/Counter/Counter";
 
+const GoHome = () => {
+  return (
+    <Link
+      to="/"
+      className="button"
+      style={{ position: "fixed", top: "0",marginTop:"30px" }}>
+      Home page
+    </Link>
+  );
+};
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -12,7 +23,12 @@ const Router = () => {
         />
 
         <Route
-          element={<Counter />}
+          element={
+            <>
+              <GoHome />
+              <Counter />
+            </>
+          }
           path="/counter"
         />
 
@@ -24,7 +40,7 @@ const Router = () => {
               <Link
                 to="/"
                 className="button">
-                Go home
+                Home page
               </Link>
             </>
           }
