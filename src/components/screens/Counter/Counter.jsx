@@ -4,17 +4,17 @@ const Counter = () => {
   const [counter, setCounter] = useState(0);
   return (
     <div>
-      <button
+      <div
         className="button"
         onClick={() => setCounter(counter + 1)}>
         Counter +1
-      </button>
+      </div>
       <h1 style={{ textAlign: "center" }}>{counter}</h1>
-      <button
+      <div
         className="button"
         onClick={() => setCounter(counter - 1)}>
         Counter -1
-      </button>
+      </div>
     </div>
   );
 };
