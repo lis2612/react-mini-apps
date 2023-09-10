@@ -2,6 +2,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Home from "./screens/Home/Home";
 import Counter from "./screens/Counter/Counter";
 import Modal from "./screens/Modal/Modal";
+import Quiz from "./screens/Quiz/Quiz";
 
 const GoHome = () => {
   return (
@@ -37,10 +38,20 @@ const Router = () => {
           element={
             <>
               <GoHome />
-              <Modal/>
+              <Modal />
             </>
           }
           path="/modal"
+        />
+
+        <Route
+          element={
+            <>
+              <GoHome />
+              <Quiz/>
+            </>
+          }
+          path="/quiz"
         />
 
         {/* Route for not found page */}
