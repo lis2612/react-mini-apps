@@ -14,6 +14,11 @@ function Home() {
         className="button">
         Modal
       </Link>
+      <Link
+        to="/quiz"
+        className="button">
+        Quiz
+      </Link>
     </>
   );
 }
