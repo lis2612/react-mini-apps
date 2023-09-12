@@ -9,15 +9,23 @@ function Home() {
         className="button">
         Counter
       </Link>
+
       <Link
         to="/modal"
         className="button">
         Modal
       </Link>
+
       <Link
         to="/quiz"
         className="button">
         Quiz
+      </Link>
+
+      <Link
+        to="/tic-tac-toe"
+        className="button">
+        Tic Tac Toe
       </Link>
     </>
   );
