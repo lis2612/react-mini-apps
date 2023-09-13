@@ -3,6 +3,7 @@ import Home from "./screens/Home/Home";
 import Counter from "./screens/Counter/Counter";
 import Modal from "./screens/Modal/Modal";
 import Quiz from "./screens/Quiz/Quiz";
+import TicTacToe from "./screens/Tictactoe/TicTacToe";
 
 const GoHome = () => {
   return (
@@ -48,10 +49,20 @@ const Router = () => {
           element={
             <>
               <GoHome />
-              <Quiz/>
+              <Quiz />
             </>
           }
           path="/quiz"
+        />
+
+        <Route
+          element={
+            <>
+              <GoHome />
+              <TicTacToe/>
+            </>
+          }
+          path="/tic-tac-toe"
         />
 
         {/* Route for not found page */}
