@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import styles from "./TicTacToe.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Square = ({ value, click }) => {
   return (
@@ -64,6 +64,7 @@ const Board = ({ squares, writeSign }) => {
     </div>
   );
 };
+
 Board.propTypes = {
   squares: PropTypes.arrayOf(PropTypes.string),
   writeSign: PropTypes.func,
@@ -72,8 +73,13 @@ Board.propTypes = {
 const TicTacToe = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isNowX, setIsNowX] = useState(true);
+  const [winner, setWinner] = useState(null);
+  useEffect(() => {
+    calculateWinner();
+  }, [squares]);
+
   const writeSign = (isNowX, squareIndex) => {
-    if (squares[squareIndex]) return;
+    if (squares[squareIndex] || winner) return;
     const newSquares = [...squares];
     if (isNowX) {
       newSquares[squareIndex] = "X";
@@ -84,11 +90,41 @@ const TicTacToe = () => {
     }
     setSquares(newSquares);
   };
+
+  const calculateWinner = () => {
+    const combinations = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let i = 0; i < combinations.length; i++) {
+      let [a, b, c] = combinations[i];
+      if (squares[a] != null && squares[a] === squares[b] && squares[a] === squares[c]) {
+        console.log(squares[a]);
+        setWinner(squares[a]);
+      }
+    }
+  };
+
+  const header = () => {
+  if (winner) {
+    return <h1>{winner} win</h1>;
+  } else {
+    return <h1>Next step is {isNowX ? "X" : "O"}</h1>;
+  }
+}
+
+
   return (
     <>
-      <h1>Now step is {isNowX?"X":"O"}</h1>
-
+      {header()}
       <Board
+        active
         squares={squares}
         writeSign={(i) => writeSign(isNowX, i)}
       />
