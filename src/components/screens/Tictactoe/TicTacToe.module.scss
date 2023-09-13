@@ -1,0 +1,28 @@
+$board-size: 600px;
+$board-border-width: 3px;
+$square-size:$board-size/3;
+
+.board {
+  width: $board-size + 2*$board-border-width;
+  height: $board-size + 2*$board-border-width;
+  display: flex;
+  flex-wrap: wrap;
+  border: $board-border-width solid white;
+  border-radius: 10px;
+}
+
+.row {
+  width: 100%;
+  height: 200px;
+  display: flex;
+}
+
+.square {
+  height: $square-size;
+  width: $square-size;
+  font-size: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid white;
+}
