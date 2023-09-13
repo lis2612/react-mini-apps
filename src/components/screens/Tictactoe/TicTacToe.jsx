@@ -112,13 +112,16 @@ const TicTacToe = () => {
   };
 
   const header = () => {
-  if (winner) {
-    return <h1>{winner} win</h1>;
-  } else {
-    return <h1>Next step is {isNowX ? "X" : "O"}</h1>;
-  }
-}
+    if (winner) {
+      return <h1>{winner} win</h1>;
+    } else {
+      return <h1>Next step is {isNowX ? "X" : "O"}</h1>;
+    }
+  };
 
+  const resetGame = () => {
+    setSquares(Array(9).fill(null));
+  };
 
   return (
     <>
@@ -128,6 +131,11 @@ const TicTacToe = () => {
         squares={squares}
         writeSign={(i) => writeSign(isNowX, i)}
       />
+      <button
+        className="button"
+        onClick={resetGame}>
+        Reset
+      </button>
     </>
   );
 };
