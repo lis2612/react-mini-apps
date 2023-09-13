@@ -74,6 +74,7 @@ const TicTacToe = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isNowX, setIsNowX] = useState(true);
   const [winner, setWinner] = useState(null);
+
   useEffect(() => {
     calculateWinner();
   }, [squares]);
@@ -111,14 +112,6 @@ const TicTacToe = () => {
     }
   };
 
-  const header = () => {
-    if (winner) {
-      return <h1>{winner} win</h1>;
-    } else {
-      return <h1>Next step is {isNowX ? "X" : "O"}</h1>;
-    }
-  };
-
   const resetGame = () => {
     setSquares(Array(9).fill(null));
     setWinner(null);
@@ -126,7 +119,7 @@ const TicTacToe = () => {
 
   return (
     <>
-      {header()}
+      {winner ? <h1>{winner} win</h1> : <h1>Next step is {isNowX ? "X" : "O"}</h1>}
       <Board
         active
         squares={squares}
