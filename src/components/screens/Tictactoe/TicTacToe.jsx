@@ -121,6 +121,7 @@ const TicTacToe = () => {
 
   const resetGame = () => {
     setSquares(Array(9).fill(null));
+    setWinner(null);
   };
 
   return (
