@@ -8,7 +8,7 @@ import TicTacToe from "./screens/Tictactoe/TicTacToe";
 const GoHome = () => {
   return (
     <Link
-      to="/"
+      to="/react-mini-apps/"
       className="button"
       style={{ position: "fixed", top: "0",marginTop:"30px" }}>
       Home page
@@ -22,7 +22,7 @@ const Router = () => {
       <Routes>
         <Route
           element={<Home />}
-          path="/"
+          path="/react-mini-apps/"
         />
 
         <Route
@@ -32,7 +32,7 @@ const Router = () => {
               <Counter />
             </>
           }
-          path="/counter"
+          path="/react-mini-apps/counter"
         />
 
         <Route
@@ -42,7 +42,7 @@ const Router = () => {
               <Modal />
             </>
           }
-          path="/modal"
+          path="/react-mini-apps/modal"
         />
 
         <Route
@@ -52,17 +52,17 @@ const Router = () => {
               <Quiz />
             </>
           }
-          path="/quiz"
+          path="/react-mini-apps/quiz"
         />
 
         <Route
           element={
             <>
               <GoHome />
-              <TicTacToe/>
+              <TicTacToe />
             </>
           }
-          path="/tic-tac-toe"
+          path="/react-mini-apps/tic-tac-toe"
         />
 
         {/* Route for not found page */}
@@ -71,7 +71,7 @@ const Router = () => {
             <>
               <h2 style={{ textAlign: "center" }}>Page not found</h2>
               <Link
-                to="/"
+                to="/react-mini-apps/"
                 className="button">
                 Home page
               </Link>
