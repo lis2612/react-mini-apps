@@ -9,11 +9,11 @@ const Question = ({ question, onClickVariants ,progress}) => {
         <p className={styles.currentProgress}>{progress*100}%</p>
       </div>
       <h2 className={styles.title}>{question.title}</h2>
-      <div>
+      <div className={styles.buttonContainer}>
         {question.variants.map((variant, id) => {
           return (
             <div
-              className="button"
+              className={`button ${styles.button}`}
               key={id}
               onClick={() => onClickVariants(id)}>
               {variant}

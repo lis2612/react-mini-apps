@@ -1,14 +1,23 @@
 $board-size: 600px;
 $board-border-width: 3px;
-$square-size:$board-size/3;
+$square-size: $board-size/3;
+
+@media screen and (max-width: 992px) {
+  $board-size: 100vw;
+  $square-size: $board-size/3;
+}
 
 .board {
-  width: $board-size + 2*$board-border-width;
-  height: $board-size + 2*$board-border-width;
+  width: $board-size + 2 * $board-border-width;
+  height: $board-size + 2 * $board-border-width;
   display: flex;
   flex-wrap: wrap;
   border: $board-border-width solid white;
   border-radius: 10px;
+  @media screen and (max-width: 992px) {
+    width: calc(90vw + 2 * $board-border-width);
+    height: calc(90vw + 2 * $board-border-width);
+  }
 }
 
 .row {
@@ -25,8 +34,12 @@ $square-size:$board-size/3;
   justify-content: space-around;
   align-items: center;
   border: 1px solid white;
+  @media screen and (max-width: 992px) {
+    width: 30vw;
+    height: 30vw;
+  }
 }
 
-.active{
+.active {
   background-color: red;
 }

@@ -4,7 +4,7 @@ import Square from "./Square";
 
 const Board = ({ squares, writeSign }) => {
   return (
-    <div className="container">
+    <div >
       <div className={styles.board}>
         {squares.map((value, index) => (
           <Square
