@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const Result = ({ result, answerCount ,setStep}) => {
   return (
     <>
-      <h2>
+      <h2 className={styles.title}>
         Right answers is {result} of {answerCount}{" "}
       </h2>
       <p className={styles.smile}>{result / answerCount < 0.7 ? "🤔" : "🎉"}</p>
