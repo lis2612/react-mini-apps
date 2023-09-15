@@ -3,18 +3,18 @@ import { useState } from "react";
 const Counter = () => {
   const [counter, setCounter] = useState(0);
   return (
-    <div>
-      <div
+    <div className="container">
+      <button
         className="button"
         onClick={() => setCounter(counter + 1)}>
         Counter +1
-      </div>
+      </button>
       <h1 style={{ textAlign: "center" }}>{counter}</h1>
-      <div
+      <button
         className="button"
         onClick={() => setCounter(counter - 1)}>
         Counter -1
-      </div>
+      </button>
     </div>
   );
 };
