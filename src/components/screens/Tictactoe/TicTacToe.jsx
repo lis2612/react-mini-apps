@@ -49,7 +49,7 @@ const TicTacToe = () => {
 
   return (
     <>
-      {winner ? <h1>{winner} win</h1> : <h1>Next step is {isNowX ? "X" : "O"}</h1>}
+      {winner ? <h2>{winner} win</h2> : <h2>Next step is {isNowX ? "X" : "O"}</h2>}
       <Board
         active
         squares={squares}

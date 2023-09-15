@@ -16,7 +16,7 @@ const Result = ({ result, answerCount ,setStep}) => {
           Try again
         </div>
       ) : (
-        <Link to="/" className="button">Home page</Link>
+        <Link to="/react-mini-apps" className="button">Home page</Link>
       )}
     </>
   );

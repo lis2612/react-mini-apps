@@ -10,7 +10,7 @@ const GoHome = () => {
     <Link
       to="/react-mini-apps/"
       className="button"
-      style={{ position: "fixed", top: "0",marginTop:"30px" }}>
+      style={{position:"relative",  top: "0",margin:"30px auto" }}>
       Home page
     </Link>
   );
