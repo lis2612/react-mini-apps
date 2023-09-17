@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const ListItem = ({ item, deleteItem, toggleChecked }) => {
   return (
@@ -8,6 +9,11 @@ const ListItem = ({ item, deleteItem, toggleChecked }) => {
       <button onClick={deleteItem}>delete</button>
     </div>
   );
+};
+ListItem.propTypes = {
+  item: PropTypes.object.isRequired,
+  deleteItem: PropTypes.func,
+  toggleChecked: PropTypes.func,
 };
 
 const Grocery = () => {
