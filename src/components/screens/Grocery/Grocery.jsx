@@ -1,66 +1,8 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
-import styles from "./Grocery.module.scss";
-import "./Grocery.module.scss";
-
+import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquarePlus, faTrashCan, faSquareCheck, faSquare, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
-
-const ListItem = ({ item, deleteItem, toggleChecked, setCount }) => {
-  return (
-    <div className={styles.listItem}>
-      <button
-        className={styles.listItem__button}
-        onClick={toggleChecked}>
-        {item.checked && <FontAwesomeIcon icon={faSquareCheck} />}
-        {!item.checked && <FontAwesomeIcon icon={faSquare} />}
-      </button>
-      <p className={item.checked ? styles.listItem__text_checked : styles.listItem__text}>{item.text}</p>
-      <Counter
-        item={item}
-        increment={() => setCount(item.id, 1)}
-        decrement={() => setCount(item.id, -1)}
-      />
-      <button
-        className={styles.listItem__button}
-        onClick={deleteItem}>
-        <FontAwesomeIcon
-          className={styles.listItem__delete}
-          icon={faTrashCan}
-        />
-      </button>
-    </div>
-  );
-};
-ListItem.propTypes = {
-  item: PropTypes.object.isRequired,
-  deleteItem: PropTypes.func,
-  toggleChecked: PropTypes.func,
-  setCount: PropTypes.func,
-};
-
-const Counter = ({ item, decrement, increment }) => {
-  return (
-    <>
-      <button
-        className={styles.counter__button}
-        onClick={decrement}>
-        <FontAwesomeIcon icon={faMinus} />
-      </button>
-      <p className={styles.counter__count}>{item.count}</p>
-      <button
-        className={styles.counter__button}
-        onClick={increment}>
-        <FontAwesomeIcon icon={faPlus} />
-      </button>
-    </>
-  );
-};
-Counter.propTypes = {
-  item: PropTypes.object.isRequired,
-  decrement: PropTypes.func,
-  increment: PropTypes.func,
-};
+import { useState } from "react";
+import styles from "./Grocery.module.scss";
+import ListItem from "./ListItem";
 
 const Grocery = () => {
   const [newItem, setNewItem] = useState("");
@@ -117,7 +59,7 @@ const Grocery = () => {
 
   const setCount = (id, num) => {
     const index = list.findIndex((item) => item.id === id);
-    if (list[index].checked) return
+    if (list[index].checked) return;
     const newList = [...list];
     newList[index].count = list[index].count + num;
     if (newList[index].count < 0) newList[index].count = 0;
