@@ -1,12 +1,29 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import styles from "./Grocery.module.scss";
+import "./Grocery.module.scss";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquarePlus, faTrashCan, faSquareCheck, faSquare } from "@fortawesome/free-solid-svg-icons";
 
 const ListItem = ({ item, deleteItem, toggleChecked }) => {
   return (
-    <div>
-      <span>{item.text}</span>
-      <button onClick={toggleChecked}>check</button>
-      <button onClick={deleteItem}>delete</button>
+    <div className={styles.listItem}>
+      <button
+        className={styles.listItem__button}
+        onClick={toggleChecked}>
+        {item.checked && <FontAwesomeIcon icon={faSquareCheck} />}
+        {!item.checked && <FontAwesomeIcon icon={faSquare} />}
+      </button>
+      <p className={item.checked ? styles.listItem__text_checked : styles.listItem__text}>{item.text}</p>
+      <button
+        className={styles.listItem__button}
+        onClick={deleteItem}>
+        <FontAwesomeIcon
+          className={styles.listItem__delete}
+          icon={faTrashCan}
+        />
+      </button>
     </div>
   );
 };
@@ -45,7 +62,7 @@ const Grocery = () => {
     if (!newItem) return;
     const newItemData = {
       id: Date.now(),
-      text: newItem,
+      text: newItem[0].toUpperCase() + newItem.slice(1),
       checked: false,
     };
     setList((prev) => [...prev, newItemData]);
@@ -66,24 +83,49 @@ const Grocery = () => {
 
   return (
     <>
+      <h2>Grocery list</h2>
       <div>
-        <input
-          type="text"
-          onChange={(e) => setNewItem(e.target.value)}
-          value={newItem}
-        />
-        <button onClick={addItem}>Add</button>
-      </div>
-      {list.map((item) => (
-        <ListItem
-          key={item.id}
-          item={item}
-          deleteItem={() => deleteItem(item.id)}
-          toggleChecked={() => toggleChecked(item.id)}
-        />
-      ))}
-      <div>
-        <div></div>
+        <div className={styles.newGrocery}>
+          <input
+            className={styles.newGrocery__input}
+            type="text"
+            onChange={(e) => setNewItem(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.code === "Enter" || e.code === "NumpadEnter") addItem();
+            }}
+            value={newItem}
+          />
+          <button
+            className={styles.newGrocery__button}
+            onClick={addItem}>
+            <FontAwesomeIcon
+              icon={faSquarePlus}
+              beat
+            />
+          </button>
+        </div>
+        <div className={styles.grocery}>
+          {list
+            .filter((item) => !item.checked)
+            .map((item) => (
+              <ListItem
+                key={item.id}
+                item={item}
+                deleteItem={() => deleteItem(item.id)}
+                toggleChecked={() => toggleChecked(item.id)}
+              />
+            ))}
+          {list
+            .filter((item) => item.checked)
+            .map((item) => (
+              <ListItem
+                key={item.id}
+                item={item}
+                deleteItem={() => deleteItem(item.id)}
+                toggleChecked={() => toggleChecked(item.id)}
+              />
+            ))}
+        </div>
       </div>
     </>
   );
