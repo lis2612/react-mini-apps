@@ -43,12 +43,14 @@ const Counter = ({ item, decrement, increment }) => {
   return (
     <>
       <button
+        disabled={item.checked}
         className={styles.counter__button}
         onClick={decrement}>
         <FontAwesomeIcon icon={faMinus} />
       </button>
       <p className={styles.counter__count}>{item.count}</p>
       <button
+        disabled={item.checked}
         className={styles.counter__button}
         onClick={increment}>
         <FontAwesomeIcon icon={faPlus} />
