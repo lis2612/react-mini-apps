@@ -4,6 +4,7 @@ import Counter from "./screens/Counter/Counter";
 import Modal from "./screens/Modal/Modal";
 import Quiz from "./screens/Quiz/Quiz";
 import TicTacToe from "./screens/Tictactoe/TicTacToe";
+import Grocery from "./screens/Grocery/Grocery";
 
 const GoHome = () => {
   return (
@@ -63,6 +64,16 @@ const Router = () => {
             </>
           }
           path="/react-mini-apps/tic-tac-toe"
+        />
+
+        <Route
+          element={
+            <>
+              <GoHome />
+              <Grocery/>
+            </>
+          }
+          path="/react-mini-apps/grocery"
         />
 
         {/* Route for not found page */}

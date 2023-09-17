@@ -1,0 +1,95 @@
+.newGrocery {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // width: 100%;
+  height: 35px;
+  background-color: rgba($color: black, $alpha: 0.8);
+  border: 2px solid white;
+  border-radius: 15px;
+  &__input {
+    width: 300px;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-radius: 15px 0 0 15px;
+    padding-left: 15px;
+  }
+
+  &__button {
+    height: 100%;
+    border-radius: 0 15px 15px 0;
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #ffffff;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid gray;
+  &:last-child {
+    border-bottom: none;
+  }
+  &__buttonWrapper {
+    display: flex;
+  }
+
+  &__text {
+    width: 100%;
+    margin-left: 10px;
+  }
+  &__text_checked {
+    width: 100%;
+    margin-left: 10px;
+    text-decoration: line-through;
+  }
+
+  &__button {
+    margin: 3px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:focus {
+      outline: none;
+    }
+    &:last-child {
+      margin-left: 10px;
+    }
+  }
+  &__delete {
+    color: rgb(114, 34, 34);
+  }
+}
+
+.counter {
+  &__button {
+    margin: 3px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__count {
+    margin: 3px;
+    min-width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
