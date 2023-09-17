@@ -27,6 +27,12 @@ function Home() {
         className="button">
         Tic Tac Toe
       </Link>
+
+      <Link
+        to="/react-mini-apps/grocery"
+        className="button">
+        Grocery list
+      </Link>
     </>
   );
 }
