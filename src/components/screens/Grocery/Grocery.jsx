@@ -97,7 +97,7 @@ const Grocery = () => {
       id: Date.now(),
       text: newItem[0].toUpperCase() + newItem.slice(1),
       checked: false,
-      quantity: 1,
+      count: 1,
     };
     setList((prev) => [...prev, newItemData]);
     setNewItem("");
