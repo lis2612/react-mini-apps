@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-const ListItem = ({ item }) => {
+const ListItem = ({ item ,deleteItem}) => {
   return (
     <div>
       <span>{item.text}</span>
       <button>check</button>
-      <button>delete</button>
+      <button onClick={deleteItem}>delete</button>
     </div>
   );
 };
@@ -47,6 +47,11 @@ const Grocery = () => {
     setNewItem("")
   };
 
+  const deleteItem = (id) => {
+    const newList = list.filter((item) => item.id != id)
+    setList(newList)
+  }
+
   return (
     <>
       <div>
@@ -61,6 +66,7 @@ const Grocery = () => {
         <ListItem
           key={item.id}
           item={item}
+          deleteItem={()=>deleteItem(item.id)}
         />
       ))}
       <div>
