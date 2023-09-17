@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const ListItem = ({ item ,deleteItem}) => {
+const ListItem = ({ item, deleteItem, toggleChecked }) => {
   return (
     <div>
       <span>{item.text}</span>
-      <button>check</button>
+      <button onClick={toggleChecked}>check</button>
       <button onClick={deleteItem}>delete</button>
     </div>
   );
@@ -35,22 +35,28 @@ const Grocery = () => {
     },
   ]);
 
-
   const addItem = () => {
-    if (!newItem) return
+    if (!newItem) return;
     const newItemData = {
       id: Date.now(),
       text: newItem,
       checked: false,
     };
-    setList((prev) => [...prev, newItemData])
-    setNewItem("")
+    setList((prev) => [...prev, newItemData]);
+    setNewItem("");
   };
 
   const deleteItem = (id) => {
-    const newList = list.filter((item) => item.id != id)
-    setList(newList)
-  }
+    const newList = list.filter((item) => item.id != id);
+    setList(newList);
+  };
+
+  const toggleChecked = (id) => {
+    const index = list.findIndex((item) => item.id === id);
+    const newList = [...list];
+    newList[index].checked = !list[index].checked;
+    setList(newList);
+  };
 
   return (
     <>
@@ -66,7 +72,8 @@ const Grocery = () => {
         <ListItem
           key={item.id}
           item={item}
-          deleteItem={()=>deleteItem(item.id)}
+          deleteItem={() => deleteItem(item.id)}
+          toggleChecked={() => toggleChecked(item.id)}
         />
       ))}
       <div>
