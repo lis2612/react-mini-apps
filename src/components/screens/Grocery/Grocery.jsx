@@ -4,9 +4,9 @@ import styles from "./Grocery.module.scss";
 import "./Grocery.module.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquarePlus, faTrashCan, faSquareCheck, faSquare } from "@fortawesome/free-solid-svg-icons";
+import { faSquarePlus, faTrashCan, faSquareCheck, faSquare, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
-const ListItem = ({ item, deleteItem, toggleChecked }) => {
+const ListItem = ({ item, deleteItem, toggleChecked, setCount }) => {
   return (
     <div className={styles.listItem}>
       <button
@@ -16,6 +16,11 @@ const ListItem = ({ item, deleteItem, toggleChecked }) => {
         {!item.checked && <FontAwesomeIcon icon={faSquare} />}
       </button>
       <p className={item.checked ? styles.listItem__text_checked : styles.listItem__text}>{item.text}</p>
+      <Counter
+        item={item}
+        increment={() => setCount(item.id, 1)}
+        decrement={() => setCount(item.id, -1)}
+      />
       <button
         className={styles.listItem__button}
         onClick={deleteItem}>
@@ -31,6 +36,30 @@ ListItem.propTypes = {
   item: PropTypes.object.isRequired,
   deleteItem: PropTypes.func,
   toggleChecked: PropTypes.func,
+  setCount: PropTypes.func,
+};
+
+const Counter = ({ item, decrement, increment }) => {
+  return (
+    <>
+      <button
+        className={styles.counter__button}
+        onClick={decrement}>
+        <FontAwesomeIcon icon={faMinus} />
+      </button>
+      <p className={styles.counter__count}>{item.count}</p>
+      <button
+        className={styles.counter__button}
+        onClick={increment}>
+        <FontAwesomeIcon icon={faPlus} />
+      </button>
+    </>
+  );
+};
+Counter.propTypes = {
+  item: PropTypes.object.isRequired,
+  decrement: PropTypes.func,
+  increment: PropTypes.func,
 };
 
 const Grocery = () => {
@@ -40,21 +69,25 @@ const Grocery = () => {
       id: 1,
       text: "Milk",
       checked: false,
+      count: 1,
     },
     {
       id: 2,
       text: "Orange",
       checked: false,
+      count: 5,
     },
     {
       id: 3,
       text: "Meat",
       checked: false,
+      count: 2,
     },
     {
       id: 4,
       text: "Water",
       checked: true,
+      count: 3,
     },
   ]);
 
@@ -64,6 +97,7 @@ const Grocery = () => {
       id: Date.now(),
       text: newItem[0].toUpperCase() + newItem.slice(1),
       checked: false,
+      quantity: 1,
     };
     setList((prev) => [...prev, newItemData]);
     setNewItem("");
@@ -78,6 +112,15 @@ const Grocery = () => {
     const index = list.findIndex((item) => item.id === id);
     const newList = [...list];
     newList[index].checked = !list[index].checked;
+    setList(newList);
+  };
+
+  const setCount = (id, num) => {
+    const index = list.findIndex((item) => item.id === id);
+    if (list[index].checked) return
+    const newList = [...list];
+    newList[index].count = list[index].count + num;
+    if (newList[index].count < 0) newList[index].count = 0;
     setList(newList);
   };
 
@@ -113,6 +156,7 @@ const Grocery = () => {
                 item={item}
                 deleteItem={() => deleteItem(item.id)}
                 toggleChecked={() => toggleChecked(item.id)}
+                setCount={setCount}
               />
             ))}
           {list
@@ -123,6 +167,7 @@ const Grocery = () => {
                 item={item}
                 deleteItem={() => deleteItem(item.id)}
                 toggleChecked={() => toggleChecked(item.id)}
+                setCount={setCount}
               />
             ))}
         </div>
